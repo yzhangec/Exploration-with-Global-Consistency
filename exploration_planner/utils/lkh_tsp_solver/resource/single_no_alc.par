@@ -1,0 +1,4 @@
+PROBLEM_FILE = /home/eason/workspace/plan_ws/src/FUEL/fuel_planner/utils/lkh_tsp_solver/resource/single_no_alc.tsp
+GAIN23 = NO
+OUTPUT_TOUR_FILE =/home/eason/workspace/plan_ws/src/FUEL/fuel_planner/utils/lkh_tsp_solver/resource/single_no_alc.txt
+RUNS = 1

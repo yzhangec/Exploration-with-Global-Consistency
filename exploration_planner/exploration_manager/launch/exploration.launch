@@ -1,0 +1,77 @@
+<launch>
+  <!-- size of map, change the size in x, y, z according to your application -->
+  <arg name="map_size_x" value="20.0"/>
+  <arg name="map_size_y" value="30.0"/>
+  <arg name="map_size_z" value="5.0"/>
+
+  <!-- topic of your odometry such as VIO or LIO -->
+  <!-- <arg name="odom_topic" value="/vins_estimator/imu_propagate" /> -->
+  <arg name="odom_topic" value="/loop_fusion/odometry_rect" />
+
+  <!-- main algorithm params -->
+  <include file="$(find exploration_manager)/launch/algorithm.xml">
+    <arg name="map_size_x_" value="$(arg map_size_x)"/>
+    <arg name="map_size_y_" value="$(arg map_size_y)"/>
+    <arg name="map_size_z_" value="$(arg map_size_z)"/>
+    <arg name="odometry_topic" value="$(arg odom_topic)"/>
+
+    <!-- sensor pose: transform of camera/body(imu) frame in the world frame -->
+    <!-- <arg name="sensor_pose_topic" value="/vins_estimator/camera_pose"/> -->
+    <arg name="sensor_pose_topic" value="/loop_fusion/camera_pose"/>
+    <!-- depth topic: depth image, 640x480 by default -->
+    <!-- cloud topic: point cloud measurement  -->
+    <!-- subscribe ONLY TO ONE of the two topics -->
+    <arg name="depth_topic" value="/camera/aligned_depth_to_infra1/image_raw"/>
+    <!-- <arg name="cloud_topic" value="/camera/depth/color/points"/> -->
+    <!-- <arg name="depth_topic" value="/NONE"/> -->
+    <arg name="cloud_topic" value="/NONE"/>
+
+    <!-- intrinsic params of the depth camera -->
+    <arg name="cx" value="4.2858985326234335e+02"/>
+    <arg name="cy" value="2.3654932642908759e+02"/>
+    <arg name="fx" value="4.2741255483729958e+02"/>
+    <arg name="fy" value="4.2712321067145098e+02"/>
+    <arg name="image_width" value="848"/>
+    <arg name="image_height" value="480"/>
+
+    <!-- maximum velocity and acceleration the drone will reach -->
+    <arg name="max_vel" value="1.0" />
+    <arg name="max_acc" value="0.5" />
+  </include>
+
+  <!-- trajectory server -->
+  <node pkg="plan_manage" name="traj_server" type="traj_server" output="screen">
+    <remap from="/position_cmd" to="planning/pos_cmd"/>
+
+    <remap from="/odom_world" to="$(arg odom_topic)"/>
+    <param name="traj_server/time_forward" value="1.5" type="double"/>
+    <param name="traj_server/pub_traj_id" value="4" type="int"/>
+    <param name="loop_correction/isLoopCorrection" value="true" type="bool"/>
+
+    <param name="perception_utils/top_angle" value="0.56125" type="double"/>
+    <param name="perception_utils/left_angle" value="0.69222" type="double"/>
+    <param name="perception_utils/right_angle" value="0.68901" type="double"/>
+    <param name="perception_utils/max_dist" value="4.5" type="double"/>
+    <param name="perception_utils/vis_dist" value="1.0" type="double"/>
+
+  </node>
+
+  <node pkg="waypoint_generator" name="waypoint_generator" type="waypoint_generator" output="screen">
+    <remap from="~odom" to="$(arg odom_topic)"/>
+    <remap from="~goal" to="/move_base_simple/goal"/>
+    <remap from="~traj_start_trigger" to="/traj_start_trigger" />
+    <param name="waypoint_type" value="point"/>
+  </node>
+
+  <!-- use simulator -->
+  <!-- <include file="$(find exploration_manager)/launch/simulator.xml">
+    <arg name="map_size_x_" value="$(arg map_size_x)"/>
+    <arg name="map_size_y_" value="$(arg map_size_y)"/>
+    <arg name="map_size_z_" value="$(arg map_size_z)"/>
+
+    <arg name="odometry_topic" value="$(arg odom_topic)" />
+    <arg name="c_num" value="0"/>
+    <arg name="p_num" value="130"/>
+  </include> -->
+
+</launch>
