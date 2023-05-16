@@ -1,0 +1,4 @@
+1. nlopt
+2. C++11 -> 14
+3. cuda settings in pcl_render
+4. unstable output from mock_loop

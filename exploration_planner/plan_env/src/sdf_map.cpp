@@ -1382,6 +1382,8 @@ bool SDFMap::getActiveLoopClosureViewpoints(vector<Eigen::Vector3d> &points, vec
   }
 
   publishViewpointsWithYaw(visualize_points, visualize_yaws);
+
+  return true;
 }
 
 void SDFMap::publishCoveredGrids(const vector<int> &grid_list) {

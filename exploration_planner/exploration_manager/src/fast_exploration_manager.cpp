@@ -116,6 +116,7 @@ int FastExplorationManager::planExploreMotion(const Vector3d& pos, const Vector3
 
   vector<vector<Eigen::Vector3d>> viewpoints_pos;
   vector<vector<double>> viewpoints_yaw;
+  ROS_INFO("getActiveLoopClosureViewpoints");
   edt_environment_->sdf_map_->getActiveLoopClosureViewpoints(ed_->alc_points_, ed_->alc_yaws_,
                                                              viewpoints_pos, viewpoints_yaw);
   // edt_environment_->sdf_map_->publishCenterViewpointsWithYaw(ed_->alc_points_, ed_->alc_yaws_);

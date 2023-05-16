@@ -1,4 +1,4 @@
-PROBLEM_FILE = /home/eason/workspace/plan_ws_icra2022/src/LargeScaleExploration/exploration_planner/utils/lkh_tsp_solver/resource/single.tsp
+PROBLEM_FILE = /home/eason/workspace/icra2022_ws/src/Exploration-with-Global-Consistency/exploration_planner/utils/lkh_tsp_solver/resource/single.tsp
 GAIN23 = NO
-OUTPUT_TOUR_FILE =/home/eason/workspace/plan_ws_icra2022/src/LargeScaleExploration/exploration_planner/utils/lkh_tsp_solver/resource/single.txt
+OUTPUT_TOUR_FILE =/home/eason/workspace/icra2022_ws/src/Exploration-with-Global-Consistency/exploration_planner/utils/lkh_tsp_solver/resource/single.txt
 RUNS = 1
