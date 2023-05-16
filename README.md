@@ -28,6 +28,11 @@ Please cite our paper if you use this project in your research:
 
 Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
 
+## Updates:
+1. I have added a new branch called "ubuntu20" that includes modifications to ensure compatibility with Ubuntu 20.04 and ROS Noetic.
+2. If you encounter a depth image with no information in uav_simulator, please verify your CUDA settings (CUDA_NVCC_FLAGS) in the CMakeLists.txt file of the local_sensing package.
+3. Note that Ubuntu 20.04 requires C++ 14 or later.
+4. Please be aware that the mock_loop package may generate divergent outputs, and restarting the node may be necessary to address this issue.
 
 ## Quick Start
 
