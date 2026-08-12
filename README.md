@@ -1,3 +1,5 @@
+
+
 # [ICRA 2022] Exploration with Global Consistency Using Real-Time Re-integration and Active Loop Closure
 
 Despite recent progress of robotic exploration, most methods assume that drift-free localization is available, which is problematic in reality and causes severe distortion of the reconstructed map. In this work, we present a systematic exploration mapping and planning framework that deals with drifted localization, allowing efficient and globally consistent reconstruction. A real-time re-integration-based mapping approach along with a frame pruning mechanism is proposed, which rectifies map distortion effectively when drifted localization is corrected upon detecting loop-closure. Besides, an exploration planning method considering historical viewpoints is presented to enable active loop closing, which promotes a higher opportunity to correct localization errors and further improves the mapping quality. We evaluate both the mapping and planning methods as well as the entire system comprehensively in simulation and real-world experiments, showing their effectiveness in practice.
@@ -26,7 +28,7 @@ Please cite our paper if you use this project in your research:
 }
 ```
 
-Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
+Please kindly star :star: this project if it helps you. We take great efforts to develop and maintain it :grin::grin:.
 
 ## Updates:
 1. I have added a new branch called "ubuntu20" that includes modifications to ensure compatibility with Ubuntu 20.04 and ROS Noetic.
